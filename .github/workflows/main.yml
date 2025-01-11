@@ -51,6 +51,10 @@ jobs:
           HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
           HOSTINGER_PASSWORD: ${{ secrets.HOSTINGER_PASSWORD }}
 
+      - name: List files in current directory
+        run: ls -al
+
+
       - name: Transfer Docker Compose file
         run: |
           sshpass -p "${{ secrets.HOSTINGER_PASSWORD }}" scp -o StrictHostKeyChecking=no compose.yaml ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}:/home/user/backend/compose.yaml
