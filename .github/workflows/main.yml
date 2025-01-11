@@ -36,9 +36,9 @@ jobs:
 
       - name: Decode and deploy to Hostinger
         run: |
-          DECODED_PASSWORD=$(echo ${{ secrets.ENCODED_HOSTINGER_PASSWORD }} | base64 --decode)
+          DECODED_PASSWORD=$(echo ${{ secrets.HOSTINGER_PASSWORD }} | base64 --decode)
           sshpass -p "$DECODED_PASSWORD" ssh -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} "docker run -d -p 8080:8080 user/my-spring-boot-app:latest"
         env:
           HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
           HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
-          ENCODED_HOSTINGER_PASSWORD: ${{ secrets.ENCODED_HOSTINGER_PASSWORD }}
+          ENCODED_HOSTINGER_PASSWORD: DECODED_PASSWORD
