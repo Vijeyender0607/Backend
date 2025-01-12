@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
 
-  db:
+  pg:
     image: postgres:latest
     ports:
       - "5432:5432"
