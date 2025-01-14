@@ -1,6 +1,8 @@
 # Use an official OpenJDK runtime as the base image
 FROM openjdk:17-jdk-alpine
 
+RUN apk add --no-cache bash
+
 # Set the working directory in the container
 WORKDIR /app
 
