@@ -1,22 +1,14 @@
-# Use an official OpenJDK runtime as the base image
+# Use a base image with Java installed
 FROM openjdk:17-jdk-alpine
 
-RUN apk add --no-cache bash
-
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the JAR file from the local machine to the container
-COPY target/*.jar app.jar
+# Copy the JAR file from the target directory to the container
+COPY target/bff-0.0.1-SNAPSHOT.jar /app/spring-boot-application.jar
 
-# Copy the wait-for-it.sh script to the container
-COPY wait-for-it.sh /wait-for-it.sh
-
-# Make the wait-for-it.sh script executable
-RUN chmod +x /wait-for-it.sh
-
-# Expose the application port
+# Expose the port the application runs on
 EXPOSE 8080
 
-# Run the wait-for-it.sh script before starting the JAR file
-ENTRYPOINT ["/wait-for-it.sh", "db:5432", "--", "java", "-jar", "app.jar"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "spring-boot-application.jar"]
