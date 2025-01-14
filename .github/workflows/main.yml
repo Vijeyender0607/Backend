@@ -29,7 +29,7 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Push Docker image to Docker Hub
-        run: docker push maxbussinesssolutions/my-spring-boot-app:latest
+        run: docker push maxbussinesssolutions/app:latest
 
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
