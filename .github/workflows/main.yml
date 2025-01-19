@@ -80,7 +80,7 @@ jobs:
           docker-compose -f compose.yml down
           docker volume prune -f compose.yml
           docker network prune -f compose.yml
-          docker-compose -f compose.yml up --build
+          docker-compose -f compose.yml up --build -d
           EOF
         env:
           HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
