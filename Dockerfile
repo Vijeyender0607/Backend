@@ -1,14 +1,11 @@
-# Use a base image with Java installed
-FROM openjdk:17-jdk-alpine
-
-# Set the working directory
+# Build stage
+FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the JAR file from the target directory to the container
-COPY target/*.jar /app/application.jar
-
-# Expose the port the application runs on
-EXPOSE 8080
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "application.jar"]
+# Package stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/application.jar
+ENTRYPOINT ["java","-jar","/app/application.jar"]
