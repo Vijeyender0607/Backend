@@ -1,10 +1,29 @@
 version: '3.8'
-
 services:
-  spring-boot-app:
-    image: maxbussinesssolutions/app:latest
+  app:
+    image: maxbussinesssolutions/app
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
-    restart: always
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/maxcrackers
+      SPRING_DATASOURCE_USERNAME: max
+      SPRING_DATASOURCE_PASSWORD: max
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: maxcrackers
+      POSTGRES_USER: max
+      POSTGRES_PASSWORD: max
+    ports:
+      - "5439:5439"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
