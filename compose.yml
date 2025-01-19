@@ -1,10 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: maxbussinesssolutions/app
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: maxbussinesssolutions/app:latest  # Use the pre-built image from Docker Hub
     ports:
       - "8080:8080"
     environment:
