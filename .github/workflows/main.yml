@@ -73,10 +73,10 @@ jobs:
           sshpass -p "${{ secrets.HOSTINGER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} <<EOF
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           cd /home/user/backend
-          docker-compose -f compose.yaml down
-          docker volume prune -f compose.yaml
-          docker network prune -f compose.yaml
-          docker-compose -f compose.yaml up --build
+          docker-compose -f compose.yml down
+          docker volume prune -f compose.yml
+          docker network prune -f compose.yml
+          docker-compose -f compose.yml up --build
           EOF
         env:
           HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
