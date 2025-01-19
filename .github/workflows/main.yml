@@ -48,6 +48,7 @@ jobs:
       - name: Transfer Docker Compose file
         run: |
           sshpass -p "${{ secrets.HOSTINGER_PASSWORD }}" scp -o StrictHostKeyChecking=no compose.yml ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}:/home/user/backend/compose.yml
+          sshpass -p "${{ secrets.HOSTINGER_PASSWORD }}" scp -o StrictHostKeyChecking=no compose.yml ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}:/home/user/backend/Dockerfile
         env:
           HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
           HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
