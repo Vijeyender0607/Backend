@@ -79,6 +79,7 @@ jobs:
           sshpass -p "${{ secrets.HOSTINGER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} <<EOF
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           cd /home/user/backend
+          echo "check docker file"
           docker-compose -f compose.yml down
           docker volume prune -f compose.yml
           docker network prune -f compose.yml
