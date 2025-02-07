@@ -39,6 +39,7 @@ jobs:
 
       - name: Create Directory on Server
         run: |
+          echo ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}
           sshpass -p "${{ secrets.HOSTINGER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} "mkdir -p /home/user/backend"
         env:
           HOSTINGER_USER: ${{ secrets.HOSTINGER_USER }}
